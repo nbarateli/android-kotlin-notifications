@@ -62,6 +62,9 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
     val isAlarmOn: LiveData<Boolean>
         get() = _alarmOn
 
+    private val _notificationLiveData = MutableLiveData<String>()
+    val notificationLiveData: LiveData<String> by ::_notificationLiveData
+
 
     private lateinit var timer: CountDownTimer
 
@@ -124,7 +127,7 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
                 val triggerTime = SystemClock.elapsedRealtime() + selectedInterval
 
                 // TODO: Step 1.5 get an instance of NotificationManager and call sendNotification
-
+                _notificationLiveData.postValue(app.getString(R.string.timer_running))
                 // TODO: Step 1.15 call cancel notification
 
                 AlarmManagerCompat.setExactAndAllowWhileIdle(
