@@ -27,7 +27,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.android.eggtimernotifications.R
 import com.example.android.eggtimernotifications.databinding.FragmentEggTimerBinding
 import com.example.android.eggtimernotifications.util.sendNotification
@@ -45,7 +45,7 @@ class EggTimerFragment : Fragment() {
             inflater, R.layout.fragment_egg_timer, container, false
         )
 
-        val viewModel = ViewModelProviders.of(this).get(EggTimerViewModel::class.java)
+        val viewModel = ViewModelProvider(this).get(EggTimerViewModel::class.java)
 
         binding.eggTimerViewModel = viewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
@@ -72,7 +72,7 @@ class EggTimerFragment : Fragment() {
                 channelId,
                 channelName,
                 // TODO: Step 2.4 change importance
-                NotificationManager.IMPORTANCE_LOW
+                NotificationManager.IMPORTANCE_HIGH
             )
             // TODO: Step 2.6 disable badges for this channel
 
